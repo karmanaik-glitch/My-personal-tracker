@@ -1,668 +1,233 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta name="career-os-hosting" content="github-pages; v8-glass-glow">
-<meta name="theme-color" content="#0b0c10">
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CareerOS — Pharm D Authority Lab</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f7f5">
+<meta name="description" content="CareerOS — a private operating system for building exceptional capability in clinical research, data, evidence and leadership.">
+<title>CareerOS — Personal Capability OS</title>
 <style>
 :root{
- --bg:#0b0d12;--bg2:#0f1219;--panel:#12161e;--panel2:#171c25;--line:#252b36;
- --txt:#eef0f4;--muted:#8e97a6;--soft:#b9c0cb;--accent:#9b8cff;--accent2:#b6aaff;
- --green:#76c7a0;--gold:#d8b36a;--blue:#82b7e8;--red:#e38b98;
- --shadow:0 12px 35px rgba(0,0,0,.22);--radius:14px
+  --bg:#f7f7f5;--surface:#fff;--ink:#171918;--muted:#70736f;--faint:#a0a39e;
+  --line:#e5e6e1;--line2:#d7d9d3;--navy:#17252a;--accent:#3158c9;
+  --green:#2f6b51;--warm:#b46b43;--radius:18px;--shadow:0 8px 30px rgba(23,25,24,.055)
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:linear-gradient(180deg,#0b0d12 0%,#090b10 100%);color:var(--txt);font:13.5px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-a{color:inherit}
-.app{display:flex;min-height:100vh}
-.side{position:fixed;inset:0 auto 0 0;width:228px;padding:20px 13px;background:rgba(11,14,20,.96);border-right:1px solid var(--line);z-index:20}
-.brand{display:flex;align-items:center;gap:11px;padding:5px 9px 25px}
-.mark{width:35px;height:35px;border-radius:9px;background:#ded8ff;color:#17131f;display:grid;place-items:center;font-weight:900;letter-spacing:-.04em}
-.brand b{display:block;font-size:14px;letter-spacing:.01em}.brand small{display:block;color:var(--muted);font-size:10.5px;margin-top:1px}
-.nav{display:grid;gap:3px}.nav button{border:1px solid transparent;background:transparent;color:#9ca5b4;padding:9px 10px;border-radius:9px;text-align:left;transition:.16s;letter-spacing:.01em}
-.nav button:hover{background:#141922;color:#e9ebef}.nav button.on{background:#191b2a;color:#f1efff;border-color:#2b2b40}
-.main{margin-left:228px;width:calc(100% - 228px);padding:28px 34px 60px;max-width:1540px}
-.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;padding-bottom:17px;border-bottom:1px solid var(--line)}
-.header h1{margin:0;font-size:23px;letter-spacing:-.025em}.header p{margin:3px 0 0;color:var(--muted);font-size:12px}
-.search{width:310px;background:#10141c;border:1px solid var(--line);color:#fff;border-radius:9px;padding:9px 12px;outline:none}
-.search:focus{border-color:#514c72}
-.page{display:none}.page.on{display:block}
-.heroMini{padding:19px 20px;background:#11151d;border:1px solid var(--line);border-radius:var(--radius);margin-bottom:15px}
-.heroMini h2{margin:0 0 3px;font-size:20px;letter-spacing:-.02em}.heroMini p{margin:0}
-.grid{display:grid;gap:13px}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
-.card{background:#11151d;border:1px solid var(--line);border-radius:var(--radius);padding:17px;box-shadow:var(--shadow)}
-.card h3{font-size:14px;margin:0 0 8px;letter-spacing:-.01em}
-.stat{min-height:104px}.num{font-size:25px;font-weight:750;letter-spacing:-.03em;margin:5px 0}.muted{color:var(--muted)}
-.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:15px}
-.bar{height:5px;background:#252b35;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:var(--accent);border-radius:99px}
-.tag{display:inline-block;border:1px solid #303744;padding:2px 6px;border-radius:999px;color:#bfc5cf;font-size:9.5px;margin-right:4px;text-transform:uppercase;letter-spacing:.04em}
-.tag.core{color:#d0c8ff;border-color:#45405d}.tag.high{color:#9ed7bd;border-color:#304c40}.tag.moat{color:#dfc88f;border-color:#4e432b}
-.domain{cursor:pointer;transition:.18s;background:#11151d}.domain:hover{transform:translateY(-2px);border-color:#3a4150;background:#131822}
-.domain h3{font-size:15px;margin:7px 0 5px}.domain .icon{font-size:17px;color:#c8c1ff}
-.domain .topics{min-height:61px;color:#8993a3;font-size:11.5px;margin:10px 0}
-.domainfoot{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid #202630;font-size:11px}
-.domainfoot b{color:#d1ccff;font-weight:600}
-.focusrow,.filter,.tabs{display:flex;gap:6px;flex-wrap:wrap}.filter{margin:11px 0}
-.btn{border:1px solid #303744;background:#151a23;color:#dfe3e9;border-radius:8px;padding:7px 10px;transition:.15s}.btn:hover{border-color:#4a5261;background:#191f29}.btn.primary{background:#c5bbff;color:#15121d;border-color:#c5bbff;font-weight:750}.btn.primary:hover{background:#d0c8ff}
-.resource{padding:12px;border:1px solid #252c37;border-radius:10px;background:#0f131a;margin:7px 0}.resource a{text-decoration:none}.resource a:hover{text-decoration:underline}
-.resource .muted{font-size:11.5px;margin-top:2px}.q{font-size:9px;font-weight:800;border-radius:99px;padding:3px 5px;margin-right:5px}.q5{background:#18362b;color:#8fd3b0}.q4{background:#282442;color:#c4baff}.q3{background:#3a301f;color:#ddc287}
-.project{padding:13px;border:1px solid #252c37;border-radius:10px;margin:7px 0;background:#10141b}.project .difficulty{font-size:9.5px;color:#8f98a7;float:right;text-transform:uppercase;letter-spacing:.05em}.project b{display:block;margin:6px 0 3px;font-size:12.5px}.project small{display:block;color:#8993a3;font-size:11.5px;line-height:1.5}.projectCard{transition:.16s}.projectCard:hover{border-color:#3b4351}
-.projectActions{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}.projectActions .btn{font-size:11px}.miniTrack{margin-top:9px}.miniTrack .muted{font-size:10.5px;margin-bottom:4px}
-.skill{padding:11px 0;border-bottom:1px solid #202630}.skilltop{display:flex;justify-content:space-between;margin-bottom:6px;font-size:12px}.skilltop span{color:var(--muted)}.skilltop .btn{font-size:11px}
-.checkrow{display:flex;gap:9px;align-items:center;padding:9px 0;border-bottom:1px solid #202630}.checkrow:last-child{border-bottom:0}.checkrow input{accent-color:var(--accent);width:16px;height:16px}.checkrow b{color:#bcb5f7}
-.note,.input{width:100%;background:#0c1017;border:1px solid #29303b;color:#edf0f5;border-radius:9px;padding:10px;outline:none}.note{min-height:145px;resize:vertical}.input:focus,.note:focus{border-color:#504b70}
-.kpi{display:flex;justify-content:space-between;gap:15px;padding:10px 0;border-bottom:1px solid #202630}.kpi:last-child{border:0}
-.projectActions+.miniTrack{margin-bottom:2px}
-.sectionLabel{font-size:10px;color:#737d8c;text-transform:uppercase;letter-spacing:.1em;margin:18px 0 8px}
-@media(max-width:1050px){.side{width:70px}.brand div:last-child,.nav button span:last-child{display:none}.brand{justify-content:center;padding-left:0;padding-right:0}.main{margin-left:70px;width:calc(100% - 70px)}.g3{grid-template-columns:repeat(2,1fr)}.statgrid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:680px){.main{padding:18px}.g3,.g2,.statgrid{grid-template-columns:1fr}.header{display:block}.search{width:100%;margin-top:10px}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+.app{min-height:100vh}.topbar{height:68px;background:rgba(247,247,245,.92);border-bottom:1px solid var(--line);display:flex;align-items:center;position:sticky;top:0;z-index:30;backdrop-filter:blur(12px)}
+.topbar-inner{width:min(1440px,100%);margin:auto;padding:0 30px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.wordmark{display:flex;align-items:center;gap:11px;font-weight:760;letter-spacing:-.035em}.mark{width:30px;height:30px;border-radius:9px;background:var(--navy);display:grid;place-items:center;color:white;font-size:13px}
+.toplinks{display:flex;gap:6px;align-items:center}.toplinks button{border:0;background:transparent;color:var(--muted);padding:9px 12px;border-radius:8px;font-size:13px}.toplinks button.active,.toplinks button:hover{background:#eceeea;color:var(--ink)}
+.menu{display:none;border:1px solid var(--line2);background:white;border-radius:9px;padding:8px 11px}
+.layout{width:min(1440px,100%);margin:auto;display:grid;grid-template-columns:235px minmax(0,1fr);min-height:calc(100vh - 68px)}
+.sidebar{border-right:1px solid var(--line);padding:27px 18px 40px;position:sticky;top:68px;height:calc(100vh - 68px)}
+.side-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:750;margin:0 11px 10px}
+.nav{display:grid;gap:3px;margin-bottom:28px}.nav button{border:0;background:transparent;text-align:left;padding:10px 11px;border-radius:9px;color:#656963;font-size:13px}.nav button:hover{background:#eceeea;color:var(--ink)}.nav button.active{background:#e9ece8;color:var(--ink);font-weight:680}
+.side-note{border-top:1px solid var(--line);padding:18px 11px;color:var(--muted);font-size:11px;line-height:1.55}.side-note b{color:var(--ink)}
+main{min-width:0}.section{padding:58px 42px 78px;max-width:1150px;margin:auto}.eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:750;margin-bottom:12px}.title{font-size:clamp(34px,4vw,56px);line-height:.98;letter-spacing:-.055em;margin:0 0 17px;font-weight:760;max-width:760px}.lede{font-size:16px;line-height:1.65;color:var(--muted);max-width:680px;margin:0}
+.hero{padding-top:70px;padding-bottom:42px;display:grid;grid-template-columns:1.5fr .75fr;gap:55px;align-items:end;border-bottom:1px solid var(--line)}
+.hero-actions{display:flex;gap:9px;margin-top:28px;flex-wrap:wrap}.btn{border:1px solid var(--line2);background:white;color:var(--ink);padding:10px 15px;border-radius:9px;font-size:12px;font-weight:700}.btn:hover{border-color:#aeb2aa}.btn.primary{background:var(--navy);border-color:var(--navy);color:white}.btn.primary:hover{background:#25363b}
+.hero-stat{border-left:1px solid var(--line);padding-left:28px}.hero-stat .big{font-size:52px;letter-spacing:-.06em;font-weight:760;line-height:1}.hero-stat span{display:block;color:var(--muted);font-size:12px;margin-top:8px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}.kpi{padding:22px 18px;border-right:1px solid var(--line)}.kpi:last-child{border-right:0}.kpi .num{font-size:27px;font-weight:730;letter-spacing:-.04em}.kpi .lab{font-size:11px;color:var(--muted);margin-top:5px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:20px}.section-head h2{font-size:25px;letter-spacing:-.04em;margin:0}.section-head p{font-size:12px;color:var(--muted);margin:5px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:21px;box-shadow:var(--shadow);transition:transform .18s,border-color .18s,box-shadow .18s}.card:hover{transform:translateY(-2px);border-color:#d0d2cc;box-shadow:0 14px 38px rgba(23,25,24,.08)}
+.domain-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.domain-no{font-size:10px;color:var(--faint);font-weight:760;letter-spacing:.1em}.domain-card h3{font-size:17px;letter-spacing:-.025em;margin:18px 0 8px}.domain-card p{font-size:12px;color:var(--muted);line-height:1.55;min-height:38px}.meter{height:4px;background:#eceeea;border-radius:10px;overflow:hidden;margin:18px 0 12px}.meter i{display:block;height:100%;background:var(--accent);border-radius:10px}.domain-foot{display:flex;justify-content:space-between;font-size:10px;color:var(--muted)}.domain-foot b{color:var(--ink)}
+.list{display:grid;gap:8px}.row{background:white;border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px}.row:hover{border-color:#cfd2ca}.row-main{min-width:0}.row-title{font-size:13px;font-weight:700}.row-sub{font-size:11px;color:var(--muted);margin-top:4px}.tag{font-size:9px;text-transform:uppercase;letter-spacing:.08em;padding:5px 7px;border-radius:6px;background:#f0f1ee;color:#6b6e68;font-weight:760;white-space:nowrap}
+.split{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}.panel{background:white;border:1px solid var(--line);border-radius:var(--radius);padding:22px}.panel h3{font-size:15px;margin:0 0 16px;letter-spacing:-.02em}
+.quote{border-left:3px solid var(--accent);padding:3px 0 3px 15px;color:#4f534e;font-size:13px;line-height:1.6}.focus{background:var(--navy);color:white;border-radius:var(--radius);padding:24px}.focus .eyebrow{color:#b8c2c5}.focus h3{font-size:25px;letter-spacing:-.04em;margin:5px 0 12px}.focus p{color:#b8c2c5;font-size:12px;line-height:1.6}.focus .btn{margin-top:10px;background:#fff;border-color:#fff}
+.search{border:1px solid var(--line2);background:white;border-radius:9px;padding:10px 12px;min-width:220px;outline:0}.search:focus{border-color:#9ba4b8;box-shadow:0 0 0 3px rgba(49,88,201,.08)}
+.domain-view{display:none}.domain-view.active{display:block}.hidden{display:none!important}
+.project-card h3{font-size:15px;margin:12px 0 7px}.project-card p{font-size:11px;color:var(--muted);line-height:1.55;margin:0 0 15px}.project-meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px}.project-meta small{font-size:10px;color:var(--muted)}.project-actions{display:flex;gap:6px}.mini{border:1px solid var(--line2);background:#fff;border-radius:7px;padding:7px 9px;font-size:10px;font-weight:720}.mini.primary{background:var(--navy);color:white;border-color:var(--navy)}
+.overlay{position:fixed;inset:0;background:rgba(20,24,22,.38);z-index:80;display:none;align-items:center;justify-content:center;padding:18px}.overlay.open{display:flex}.modal{background:#fff;border:1px solid var(--line);border-radius:18px;width:min(680px,100%);max-height:90vh;overflow:auto;box-shadow:0 30px 80px rgba(0,0,0,.18);padding:25px}.modal-head{display:flex;justify-content:space-between;gap:20px}.modal h2{margin:0;font-size:23px;letter-spacing:-.04em}.close{border:0;background:#f0f1ee;width:32px;height:32px;border-radius:8px}.steps{display:grid;gap:8px;margin-top:20px}.step{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:12px}.step input{margin-top:2px;accent-color:var(--accent)}.notes{width:100%;min-height:110px;border:1px solid var(--line2);border-radius:9px;padding:11px;margin-top:15px;resize:vertical}.modal-foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px}.status{font-size:10px;font-weight:760;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:24px 42px;color:var(--muted);font-size:10px;display:flex;justify-content:space-between}
+@media(max-width:950px){.layout{grid-template-columns:190px 1fr}.section{padding-left:28px;padding-right:28px}.hero{grid-template-columns:1fr}.hero-stat{border-left:0;border-top:1px solid var(--line);padding:20px 0 0}.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.topbar{height:60px}.topbar-inner{padding:0 14px}.toplinks{display:none}.menu{display:block}.layout{display:block}.sidebar{position:fixed;z-index:70;top:60px;left:0;bottom:0;width:280px;height:auto;background:#fff;transform:translateX(-105%);transition:transform .2s;box-shadow:20px 0 45px rgba(0,0,0,.1)}.sidebar.open{transform:translateX(0)}.section{padding:36px 14px 55px}.hero{padding-top:34px}.title{font-size:39px}.lede{font-size:14px}.kpis{grid-template-columns:repeat(2,1fr)}.kpi{border-bottom:1px solid var(--line)}.kpi:nth-child(2){border-right:0}.grid,.split{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.search{width:100%;min-width:0}.row{align-items:flex-start}.row .tag{display:none}footer{padding:20px 14px;gap:10px;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
-
-<style id="career-os-v6-responsive">
-/* CareerOS v6 — responsive/mobile + GitHub Pages hardening */
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
-body { min-width: 0 !important; overflow-x: hidden !important; }
-img, svg, canvas, video { max-width: 100%; }
-button, input, select, textarea { font: inherit; }
-button, a, input[type="checkbox"], input[type="radio"] { touch-action: manipulation; }
-
-@media (max-width: 900px) {
-  .app, .shell, .container, .wrap, main { max-width: 100% !important; width: 100% !important; }
-  .sidebar, aside { width: 220px; }
-  .grid, .cards, .domain-grid, .project-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
-  table { min-width: 620px; }
-  .table-wrap, .table-container, .overflow-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-}
-
-@media (max-width: 700px) {
-  :root { --mobile-pad: 14px; }
-  body { font-size: 14px; }
-  header, .topbar, .navbar, .header { padding-left: var(--mobile-pad) !important; padding-right: var(--mobile-pad) !important; }
-  main, .content, .page, .main, .container, .shell { padding-left: var(--mobile-pad) !important; padding-right: var(--mobile-pad) !important; }
-  .sidebar, aside {
-    position: fixed !important;
-    z-index: 1000;
-    inset: 0 auto 0 0;
-    max-width: 84vw;
-    transform: translateX(-105%);
-    transition: transform .22s ease;
-    box-shadow: 20px 0 60px rgba(0,0,0,.35);
-  }
-  .sidebar.open, aside.open, body.menu-open .sidebar, body.menu-open aside { transform: translateX(0); }
-  .mobile-menu-btn { display: inline-flex !important; }
-  .grid, .cards, .domain-grid, .project-grid, .stats, .metrics { grid-template-columns: 1fr !important; }
-  .hero, .hero-grid, .dashboard-grid { grid-template-columns: 1fr !important; }
-  .card, .panel, .project-card, .domain-card { min-width: 0 !important; }
-  .toolbar, .filters, .actions, .button-row { flex-wrap: wrap !important; gap: 8px !important; }
-  button, .btn, a.btn { min-height: 44px; }
-  input, select, textarea { min-height: 44px; max-width: 100%; }
-  textarea { min-height: 110px; }
-  .modal, dialog, .drawer { width: calc(100vw - 20px) !important; max-width: calc(100vw - 20px) !important; margin: 10px !important; }
-  .modal-body, .drawer-body { max-height: 78vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-  .hide-mobile { display: none !important; }
-  .mobile-only { display: block !important; }
-  .brand { max-width: calc(100vw - 90px); }
-  .brand h1, .brand-title { font-size: 18px !important; }
-  h1 { font-size: clamp(24px, 7vw, 34px) !important; }
-  h2 { font-size: clamp(20px, 6vw, 28px) !important; }
-  h3 { font-size: 18px !important; }
-  .stat-value, .metric-value { font-size: 24px !important; }
-  .project-card p, .card p { line-height: 1.55; }
-  pre, code { max-width: 100%; overflow-x: auto; }
-  .bottom-nav {
-    display: flex !important;
-    position: fixed;
-    z-index: 900;
-    left: 10px; right: 10px; bottom: max(10px, env(safe-area-inset-bottom));
-    padding: 7px;
-    border-radius: 18px;
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-  }
-  body { padding-bottom: 82px; }
-}
-
-@media (max-width: 420px) {
-  :root { --mobile-pad: 11px; }
-  .pill, .tag, .badge { font-size: 11px !important; }
-  .btn { padding: 9px 12px !important; }
-  .card, .panel, .project-card, .domain-card { padding: 13px !important; }
-}
-
-/* Defaults for injected responsive helpers */
-.mobile-menu-btn, .mobile-only, .bottom-nav { display: none; }
-</style>
-
-
-<style id="career-os-v7-color">
-/* CareerOS v7 — restrained color system: premium, energetic, not neon */
-:root{
-  --c-purple:#8b7cf6;
-  --c-blue:#5aa9ff;
-  --c-cyan:#48d9d0;
-  --c-green:#62d99b;
-  --c-amber:#f4bd68;
-  --c-pink:#e98bbd;
-  --c-red:#ee8585;
-  --c-surface:#11141c;
-  --c-surface-2:#151925;
-}
-
-/* subtle color atmosphere */
-body{
-  background:
-    radial-gradient(900px 500px at 8% -8%, rgba(139,124,246,.10), transparent 58%),
-    radial-gradient(800px 500px at 96% 4%, rgba(72,217,208,.065), transparent 55%),
-    #0b0c10;
-}
-
-/* accents on common interactive elements */
-a:hover{color:var(--c-blue);}
-button:hover,.btn:hover{border-color:rgba(139,124,246,.45);}
-.progress,.progress-bar,.bar-fill{
-  background-image:linear-gradient(90deg,var(--c-purple),var(--c-blue),var(--c-cyan));
-}
-.badge,.tag,.pill{
-  border-color:rgba(139,124,246,.25);
-  background:rgba(139,124,246,.09);
-}
-.card:hover,.panel:hover,.project-card:hover,.domain-card:hover{
-  border-color:rgba(139,124,246,.28);
-  box-shadow:0 12px 35px rgba(0,0,0,.18),0 0 0 1px rgba(139,124,246,.04);
-}
-
-/* tasteful domain color cues */
-.domain-card:nth-child(4n+1){--domain-accent:var(--c-purple);}
-.domain-card:nth-child(4n+2){--domain-accent:var(--c-blue);}
-.domain-card:nth-child(4n+3){--domain-accent:var(--c-cyan);}
-.domain-card:nth-child(4n+4){--domain-accent:var(--c-amber);}
-.domain-card{
-  position:relative;
-  overflow:hidden;
-}
-.domain-card::before{
-  content:"";
-  position:absolute;
-  left:0;top:0;bottom:0;width:3px;
-  background:var(--domain-accent,var(--c-purple));
-  opacity:.85;
-}
-.domain-card .icon,.domain-card .domain-icon{
-  color:var(--domain-accent,var(--c-purple));
-}
-
-/* colorful metric/value accents without making the page loud */
-.stat:nth-child(4n+1) .stat-value,
-.metric:nth-child(4n+1) .metric-value{color:var(--c-purple);}
-.stat:nth-child(4n+2) .stat-value,
-.metric:nth-child(4n+2) .metric-value{color:var(--c-blue);}
-.stat:nth-child(4n+3) .stat-value,
-.metric:nth-child(4n+3) .metric-value{color:var(--c-cyan);}
-.stat:nth-child(4n+4) .stat-value,
-.metric:nth-child(4n+4) .metric-value{color:var(--c-amber);}
-
-/* status colors */
-.status-completed,.completed{color:var(--c-green)!important;}
-.status-progress,.in-progress{color:var(--c-blue)!important;}
-.status-review,.review{color:var(--c-purple)!important;}
-.status-blocked,.blocked{color:var(--c-red)!important;}
-
-/* selected/current navigation */
-nav a.active,.sidebar a.active,aside a.active,
-nav button.active,.sidebar button.active{
-  color:#fff;
-  background:linear-gradient(90deg,rgba(139,124,246,.16),rgba(90,169,255,.07));
-  border-color:rgba(139,124,246,.22);
-}
-
-/* keep mobile equally restrained */
-@media(max-width:700px){
-  body{
-    background:
-      radial-gradient(500px 350px at 0% -5%,rgba(139,124,246,.075),transparent 60%),
-      #0b0c10;
-  }
-}
-</style>
-
-
-<style id="career-os-v8-glass-glow">
-/* CareerOS v8 — glassmorphism + soft ambient glow */
-:root{
-  --glass-bg:rgba(20,23,34,.58);
-  --glass-bg-strong:rgba(22,25,38,.72);
-  --glass-border:rgba(255,255,255,.105);
-  --glass-border-soft:rgba(255,255,255,.065);
-  --glass-shadow:0 18px 55px rgba(0,0,0,.25);
-  --glow-purple:rgba(139,124,246,.18);
-  --glow-blue:rgba(90,169,255,.14);
-  --glow-cyan:rgba(72,217,208,.11);
-  --glow-amber:rgba(244,189,104,.10);
-}
-
-body{
-  background:
-    radial-gradient(650px 430px at 7% 2%,var(--glow-purple),transparent 68%),
-    radial-gradient(600px 420px at 94% 8%,var(--glow-blue),transparent 66%),
-    radial-gradient(520px 380px at 50% 100%,var(--glow-cyan),transparent 72%),
-    #090b10;
-  background-attachment:fixed;
-}
-
-/* Common surfaces — translucent, softly bordered, gently blurred */
-.card,.panel,.project-card,.domain-card,.stat,.metric,
-.modal,.drawer,.dropdown,.popover,.toolbar,.filters,
-header,.topbar,.navbar,.sidebar,aside{
-  background:var(--glass-bg);
-  border-color:var(--glass-border);
-  box-shadow:var(--glass-shadow);
-  backdrop-filter:blur(18px) saturate(125%);
-  -webkit-backdrop-filter:blur(18px) saturate(125%);
-}
-
-/* Avoid making every element look like a floating box */
-.card,.panel,.project-card,.domain-card{
-  background:
-    linear-gradient(135deg,rgba(255,255,255,.035),rgba(255,255,255,.008)),
-    var(--glass-bg);
-}
-
-/* Fine highlight along the top edge */
-.card::after,.panel::after,.project-card::after,.domain-card::after{
-  content:"";
-  position:absolute;
-  pointer-events:none;
-  left:10%;right:10%;top:0;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);
-  opacity:.7;
-}
-
-/* Soft ambient color around selected/hovered surfaces */
-.card:hover,.panel:hover,.project-card:hover,.domain-card:hover{
-  background:
-    radial-gradient(350px 160px at 15% 0%,rgba(139,124,246,.075),transparent 70%),
-    rgba(20,23,34,.66);
-  box-shadow:
-    0 22px 60px rgba(0,0,0,.30),
-    0 0 35px rgba(139,124,246,.055);
-  transform:translateY(-1px);
-  transition:background .2s ease,box-shadow .2s ease,transform .2s ease,border-color .2s ease;
-}
-
-/* Inputs and controls get the same material language */
-input,select,textarea{
-  background:rgba(7,9,14,.42)!important;
-  border-color:var(--glass-border-soft)!important;
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-}
-input:focus,select:focus,textarea:focus{
-  border-color:rgba(139,124,246,.48)!important;
-  box-shadow:0 0 0 3px rgba(139,124,246,.09),0 0 22px rgba(139,124,246,.08);
-  outline:none;
-}
-
-/* Buttons: subtle glass + glow */
-button,.btn{
-  background:rgba(255,255,255,.035);
-  border-color:rgba(255,255,255,.10);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-}
-button:hover,.btn:hover{
-  box-shadow:0 0 22px rgba(139,124,246,.10);
-}
-
-/* Primary actions get a controlled luminous edge */
-.btn-primary,.primary,.cta{
-  box-shadow:0 8px 28px rgba(90,169,255,.10),0 0 22px rgba(139,124,246,.07);
-}
-
-/* Progress bars and accents glow gently */
-.progress,.progress-bar,.bar-fill{
-  box-shadow:0 0 16px rgba(90,169,255,.16);
-}
-
-/* Floating logo/icon treatment */
-.brand,.logo,.app-logo{
-  filter:drop-shadow(0 0 18px rgba(139,124,246,.14));
-}
-
-/* Modal/drawer readability */
-.modal,.drawer{
-  background:var(--glass-bg-strong);
-  border:1px solid var(--glass-border);
-  box-shadow:0 30px 90px rgba(0,0,0,.45),0 0 50px rgba(139,124,246,.07);
-}
-
-/* Mobile glass stays performant */
-@media(max-width:700px){
-  body{background-attachment:scroll;}
-  .card,.panel,.project-card,.domain-card,.stat,.metric,
-  .modal,.drawer,.sidebar,aside{
-    backdrop-filter:blur(14px) saturate(120%);
-    -webkit-backdrop-filter:blur(14px) saturate(120%);
-  }
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    scroll-behavior:auto!important;
-    transition-duration:.01ms!important;
-    animation-duration:.01ms!important;
-  }
-}
-</style>
-
 </head>
 <body>
 <div class="app">
-<aside class="side">
- <div class="brand"><div class="mark">C</div><div><b>CareerOS</b><small>Pharm D Authority Lab</small></div></div>
- <nav class="nav">
-  <button class="on" data-page="home">⌂ <span>Dashboard</span></button>
-  <button data-page="domains">◈ <span>Domains</span></button>
-  <button data-page="resources">▤ <span>Resources</span></button>
-  <button data-page="projects">◇ <span>Project Lab</span></button>
-  <button data-page="skills">◫ <span>Skill Matrix</span></button>
-  <button data-page="plan">□ <span>Learning Plan</span></button>
- </nav>
+<header class="topbar"><div class="topbar-inner">
+  <div class="wordmark"><span class="mark">C</span><span>CareerOS</span></div>
+  <div class="toplinks" id="toplinks">
+    <button class="active" data-target="dashboard">Overview</button><button data-target="domains">Capabilities</button><button data-target="projects">Projects</button><button data-target="plan">Plan</button>
+  </div>
+  <button class="menu" id="menuBtn">Menu</button>
+</div></header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <p class="side-label">Workspace</p>
+  <div class="nav">
+    <button class="active" data-target="dashboard">Overview</button>
+    <button data-target="domains">Capability map</button>
+    <button data-target="projects">Project studio</button>
+    <button data-target="skills">Skill matrix</button>
+    <button data-target="resources">Library</button>
+    <button data-target="plan">Development plan</button>
+  </div>
+  <p class="side-label">Operating principle</p>
+  <div class="side-note"><b>Learn → build → publish → reflect.</b><br><br>CareerOS is designed around evidence of capability, not a collection of certificates.</div>
 </aside>
-<main class="main">
-<header class="header"><div><h1 id="title">CareerOS</h1><p id="subtitle">Pharm D · Clinical Research · PV · Data · AI</p></div><input id="globalSearch" class="search" placeholder="Search domains, skills, projects…"></header>
 
-<section id="home" class="page on">
- <div class="heroMini"><h2>Authority Lab</h2><p class="muted">A structured system for building clinical-research depth, technical capability and leadership leverage.</p>
- <div class="filter"><span class="tag core">CORE</span> Clinical Research · PV · Regulatory · Biostatistics</div><div class="filter"><span class="tag high">HIGH</span> R · SAS · Python · SQL/Excel · RWE · Evidence · Quality</div><div class="filter"><span class="tag moat">FUTURE MOAT</span> AI + Automation · Leadership</div></div>
- <div class="statgrid">
-  <div class="card stat"><span class="muted">Domains</span><div class="num" id="domainCount">0</div><span class="muted">parallel lanes</span></div>
-  <div class="card stat"><span class="muted">Projects</span><div class="num" id="projectCount">0</div><span class="muted">idea bank</span></div>
-  <div class="card stat"><span class="muted">Resources</span><div class="num" id="resourceCount">0</div><span class="muted">ranked links</span></div>
-  <div class="card stat"><span class="muted">Skill progress</span><div class="num" id="skillPct">0%</div><div class="bar"><i id="skillBar" style="width:0%"></i></div></div>
- </div>
- <div class="grid g2">
-  <div class="card"><h3>Recommended order</h3><div class="checkrow"><b>1</b><span>Clinical Research + GCP</span></div><div class="checkrow"><b>2</b><span>PV + Regulatory</span></div><div class="checkrow"><b>3</b><span>Biostatistics + R + SAS</span></div><div class="checkrow"><b>4</b><span>Excel/SQL + Python</span></div><div class="checkrow"><b>5</b><span>RWE + Evidence</span></div><div class="checkrow"><b>6</b><span>AI + Quality + Leadership</span></div></div>
-  <div class="card"><h3>Weekly operating system</h3><div class="checkrow">☐ <span>3–5 h clinical/PV/regulatory</span></div><div class="checkrow">☐ <span>3 h statistics/R/SAS/data</span></div><div class="checkrow">☐ <span>2 h project/build</span></div><div class="checkrow">☐ <span>1 h papers + industry intelligence</span></div><div class="checkrow">☐ <span>1 short written synthesis</span></div></div>
- </div>
+<main>
+<section id="dashboard" class="section view">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Personal capability system · v10</div>
+      <h1 class="title">Build a career that compounds.</h1>
+      <p class="lede">A focused workspace for developing deep technical capability, practical evidence and strategic range across clinical research, data, evidence and leadership.</p>
+      <div class="hero-actions"><button class="btn primary" data-target="projects">Open project studio</button><button class="btn" data-target="domains">Explore capabilities</button></div>
+    </div>
+    <div class="hero-stat"><div class="big" id="overallPct">0%</div><span>overall capability progress</span></div>
+  </div>
+  <div class="kpis"><div class="kpi"><div class="num" id="domainCount">13</div><div class="lab">capability domains</div></div><div class="kpi"><div class="num" id="projectCount">130</div><div class="lab">portfolio projects</div></div><div class="kpi"><div class="num" id="activeCount">0</div><div class="lab">active projects</div></div><div class="kpi"><div class="num" id="doneCount">0</div><div class="lab">completed projects</div></div></div>
+
+  <div style="padding-top:48px"><div class="section-head"><div><h2>Current focus</h2><p>The next useful piece of work, not the next thing to consume.</p></div></div>
+  <div class="split"><div class="focus"><div class="eyebrow">Recommended next move</div><h3>Turn one skill into evidence.</h3><p>Choose a small, finished project. Produce something that can be inspected: an analysis, dashboard, protocol map, evidence brief or workflow.</p><button class="btn" data-target="projects">Choose a project →</button></div><div class="panel"><h3>Working rule</h3><div class="quote">“The strongest profile is not the person who knows the most. It is the person who can repeatedly turn knowledge into reliable outcomes.”</div></div></div></div>
+
+  <div style="padding-top:48px"><div class="section-head"><div><h2>Capability map</h2><p>13 interconnected domains. Build breadth, then deepen where leverage is highest.</p></div><button class="btn" data-target="domains">View all</button></div><div class="grid" id="dashboardDomains"></div></div>
 </section>
 
-<section id="domains" class="page">
- <div class="heroMini"><h2>Domains</h2><p class="muted">Open a domain for exact skills, ranked free resources and 10 projects from easy → expert.</p></div>
- <div class="grid g3" id="domainGrid"></div>
+<section id="domains" class="section view hidden">
+  <div class="section-head"><div><div class="eyebrow">Capability map</div><h2>Build the stack.</h2><p>Each domain has a learning path and portfolio projects.</p></div><input class="search" id="domainSearch" placeholder="Search capabilities…"></div>
+  <div class="grid" id="domainGrid"></div>
 </section>
 
-<section id="domainDetail" class="page">
- <button class="btn" onclick="showPage('domains')">← All domains</button>
- <div id="domainDetailContent" style="margin-top:12px"></div>
+<section id="projects" class="section view hidden">
+  <div class="section-head"><div><div class="eyebrow">Project studio</div><h2>Make the work visible.</h2><p>Projects are the proof layer of the system.</p></div><input class="search" id="projectSearch" placeholder="Search projects…"></div>
+  <div class="list" id="projectList"></div>
 </section>
 
-<section id="resources" class="page">
- <div class="heroMini"><h2>Free Resource Library</h2><p class="muted">Quality ranking: 5 = official/primary source · 4 = university/open textbook/high-quality reference · 3 = strong platform/community.</p></div>
- <div class="filter" id="resourceFilters"></div>
- <div id="resourceList"></div>
+<section id="skills" class="section view hidden">
+  <div class="section-head"><div><div class="eyebrow">Skill matrix</div><h2>Capability over credentials.</h2><p>Track what you can actually do.</p></div></div>
+  <div class="list" id="skillList"></div>
 </section>
 
-<section id="projects" class="page">
- <div class="heroMini"><h2>Project Lab</h2><p class="muted">Projects are evidence of capability. Use public/synthetic data and never expose confidential employer data.</p></div>
- <div class="filter" id="projectFilters"></div>
- <div id="projectList"></div>
+<section id="resources" class="section view hidden">
+  <div class="section-head"><div><div class="eyebrow">Library</div><h2>High-signal resources.</h2><p>Use authoritative material to build working knowledge.</p></div></div>
+  <div class="grid">
+    <div class="card"><div class="eyebrow">Clinical research</div><h3>ICH E6(R3) Good Clinical Practice</h3><p class="row-sub">Primary reference for modern GCP principles and investigator/sponsor responsibilities.</p><a class="btn" target="_blank" rel="noopener" href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e6r3-good-clinical-practice-gcp">Open FDA guidance →</a></div>
+    <div class="card"><div class="eyebrow">Evidence</div><h3>PubMed</h3><p class="row-sub">Search biomedical literature, build reproducible search strategies and follow evidence trails.</p><a class="btn" target="_blank" rel="noopener" href="https://pubmed.ncbi.nlm.nih.gov/">Open PubMed →</a></div>
+    <div class="card"><div class="eyebrow">Data</div><h3>R for Data Science</h3><p class="row-sub">A practical foundation for data transformation, visualization and reproducible analysis.</p><a class="btn" target="_blank" rel="noopener" href="https://r4ds.hadley.nz/">Open R4DS →</a></div>
+    <div class="card"><div class="eyebrow">Statistics</div><h3>Khan Academy · Statistics</h3><p class="row-sub">Free statistics and probability foundations for analytical work.</p><a class="btn" target="_blank" rel="noopener" href="https://www.khanacademy.org/math/statistics-probability">Open statistics →</a></div>
+    <div class="card"><div class="eyebrow">Programming</div><h3>Kaggle Learn</h3><p class="row-sub">Short, practical lessons for Python, SQL and data workflows.</p><a class="btn" target="_blank" rel="noopener" href="https://www.kaggle.com/learn">Open Kaggle Learn →</a></div>
+    <div class="card"><div class="eyebrow">Safety</div><h3>EMA · Pharmacovigilance</h3><p class="row-sub">European regulatory guidance and pharmacovigilance resources.</p><a class="btn" target="_blank" rel="noopener" href="https://www.ema.europa.eu/en/human-regulatory-overview/research-development/pharmacovigilance-research-development">Open EMA →</a></div>
+  </div>
 </section>
 
-<section id="skills" class="page">
- <div class="heroMini"><h2>Skill Matrix</h2><p class="muted">Rate yourself honestly. Re-score every quarter. Target: capability, not certificates.</p></div>
- <div class="card" id="skillMatrix"></div>
+<section id="plan" class="section view hidden">
+  <div class="section-head"><div><div class="eyebrow">Development plan</div><h2>Sequence the next year.</h2><p>Move from foundations to working proficiency, then evidence and authority.</p></div></div>
+  <div class="list">
+    <div class="row"><div class="row-main"><div class="row-title">01 · Foundations</div><div class="row-sub">GCP, PV, regulatory vocabulary, statistics, Excel/SQL and research literacy.</div></div><span class="tag">Build base</span></div>
+    <div class="row"><div class="row-main"><div class="row-title">02 · Analytical fluency</div><div class="row-sub">R + Python + SAS concepts, clinical datasets, visualization and reproducible workflows.</div></div><span class="tag">Become useful</span></div>
+    <div class="row"><div class="row-main"><div class="row-title">03 · Evidence & RWE</div><div class="row-sub">Epidemiology, causal inference, evidence synthesis and observational study design.</div></div><span class="tag">Differentiate</span></div>
+    <div class="row"><div class="row-main"><div class="row-title">04 · AI & automation</div><div class="row-sub">Build safe, auditable workflows that reduce repetitive work without weakening quality.</div></div><span class="tag">Multiply</span></div>
+    <div class="row"><div class="row-main"><div class="row-title">05 · Leadership</div><div class="row-sub">Communication, project ownership, stakeholder management, business thinking and strategy.</div></div><span class="tag">Lead</span></div>
+  </div>
 </section>
+</main>
+</div>
+<footer><span>CareerOS · Personal capability operating system</span><span>Local-first · GitHub Pages ready</span></footer>
+</div>
 
-<section id="plan" class="page">
- <div class="heroMini"><h2>Learning Plan</h2><p class="muted">Use this as a compact progression. Parallelize once the basics are stable.</p></div>
- <div class="grid g2">
-  <div class="card"><h3>0–3 months · Foundation sprint</h3><div id="p1"></div></div>
-  <div class="card"><h3>3–6 months · Applied sprint</h3><div id="p2"></div></div>
-  <div class="card"><h3>6–12 months · Technical moat</h3><div id="p3"></div></div>
-  <div class="card"><h3>12–24 months · Authority build</h3><div id="p4"></div></div>
- </div>
-</section>
-</main></div>
+<div class="overlay" id="overlay"><div class="modal">
+  <div class="modal-head"><div><div class="eyebrow" id="modalDomain">Project</div><h2 id="modalTitle">Project</h2></div><button class="close" id="closeModal">×</button></div>
+  <p id="modalDesc" style="font-size:12px;color:var(--muted);line-height:1.6"></p>
+  <div class="steps" id="steps"></div>
+  <textarea class="notes" id="notes" placeholder="Notes, decisions, lessons learned…"></textarea>
+  <div class="modal-foot"><span class="status" id="modalStatus">Not started</span><button class="btn primary" id="saveProject">Save progress</button></div>
+</div></div>
 
 <script>
-const DOMAINS=[{"id": "clinical", "name": "Clinical Research", "icon": "◉", "priority": "CORE", "skills": ["Clinical trial lifecycle", "Phase I–IV and study types", "Protocol anatomy", "Objectives, endpoints & estimands", "Randomization & blinding", "Eligibility criteria", "ICH E6(R3) GCP", "Risk-based quality management", "Site management & monitoring", "Protocol deviations / violations", "TMF / essential documents", "ClinicalTrials.gov basics", "Inspection readiness"], "resources": [["5", "ICH E6(R3) Good Clinical Practice", "Official ICH/FDA guidance", "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e6r3-good-clinical-practice-gcp"], ["5", "NIH Good Clinical Practice Training", "Free official GCP training", "https://www.grants.nih.gov/policy-and-compliance/policy-topics/clinical-trials/good-clinical-training"], ["5", "FDA Clinical Trials Training Modules", "Free on-demand FDA training", "https://www.fda.gov/drugs/cder-small-business-industry-assistance-sbia/fda-clinical-trials-training-modules"], ["5", "ClinicalTrials.gov", "Primary trial registry / study examples", "https://clinicaltrials.gov/"], ["4", "NIH Clinical Trials and You", "Clinical research basics", "https://www.nih.gov/health-information/nih-clinical-research-trials-you/basics"]], "projects": [["Easy", "Deconstruct 5 clinical trial protocols", "Take public protocols and map objectives, population, intervention, endpoints and visits."], ["Easy", "Clinical trial lifecycle map", "Create a one-page sponsor→site→data→CSR workflow."], ["Easy", "Protocol deviation taxonomy", "Build a classification system for common deviations and their root causes."], ["Easy", "Eligibility criteria checker", "Turn one public protocol into a structured inclusion/exclusion checklist."], ["Medium", "Trial feasibility scorecard", "Create a scoring model for site recruitment, population, competition and logistics."], ["Medium", "Protocol risk register", "Identify critical-to-quality factors and create a risk/mitigation table."], ["Medium", "Site performance dashboard", "Use synthetic data to track screening, enrollment, deviations and query rates."], ["Hard", "Protocol-to-CRF mapping", "Design a small CRF/data dictionary from a public protocol."], ["Hard", "Trial risk prediction model", "Predict site underperformance using synthetic/public data."], ["Expert", "End-to-end trial intelligence system", "Combine protocol extraction, site KPIs, risk signals and executive reporting."]]}, {"id": "pv", "name": "Pharmacovigilance", "icon": "✚", "priority": "CORE", "skills": ["AE/ADR terminology", "Seriousness vs severity", "Causality assessment", "Expectedness", "ICSR validity", "Case triage & workflow", "MedDRA hierarchy", "WHO Drug concepts", "E2B(R3) concepts", "Narrative writing", "Duplicate detection", "Literature surveillance", "Signal detection", "Disproportionality: ROR/PRR/IC", "Signal validation & evaluation", "DSUR", "PBRER/PSUR", "RMP", "Benefit-risk assessment", "PV quality systems"], "resources": [["5", "EMA Pharmacovigilance Training Materials", "Free official PV training collection", "https://www.ema.europa.eu/en/pharmacovigilance-overview/pharmacovigilance-training-materials"], ["5", "EMA GVP", "Official Good Pharmacovigilance Practices", "https://www.ema.europa.eu/en/human-regulatory-overview/post-authorisation/pharmacovigilance-post-authorisation/good-pharmacovigilance-practices-gvp"], ["5", "WHO PV Training Resources", "Free WHO PV training", "https://www.who.int/teams/regulation-prequalification/regulation-and-safety/pharmacovigilance/training-resources"], ["5", "EMA EudraVigilance Training", "ICSR/E2B/signal resources", "https://www.ema.europa.eu/en/human-regulatory-overview/research-development/pharmacovigilance-research-development/eudravigilance/eudravigilance-training-support"], ["5", "WHO PV Learning Catalogue", "Free PV e-learning catalogue", "https://www.who.int/tools/health-products-regulation-and-prequalification-learning-catalogue/vigilance"]], "projects": [["Easy", "AE vs SAE decision tree", "Build a one-page decision tree with examples."], ["Easy", "Causality casebook", "Write and justify causality assessments for 20 synthetic cases."], ["Easy", "MedDRA hierarchy explorer", "Map example terms from LLT→PT→HLT→SOC using public documentation."], ["Easy", "Safety narrative practice", "Write 10 structured narratives from synthetic case summaries."], ["Medium", "ICSR workflow simulator", "Build a spreadsheet workflow from intake to follow-up and closure."], ["Medium", "Duplicate detection rules", "Create rule-based duplicate matching using synthetic cases."], ["Medium", "PV literature screening tool", "Use Python to classify abstracts as potentially relevant/not relevant."], ["Hard", "Disproportionality analysis", "Calculate ROR and PRR on a public/synthetic AE dataset."], ["Hard", "Signal evaluation report", "Take one signal-like pattern and write a structured signal assessment."], ["Expert", "PV intelligence dashboard", "Combine case trends, disproportionality, seriousness and signal prioritization."]]}, {"id": "reg", "name": "Regulatory", "icon": "§", "priority": "CORE", "skills": ["CDSCO / NDCTR", "IEC/IRB requirements", "ICH framework", "FDA IND/NDA/BLA concepts", "EMA / CTIS / EU CTR", "Regulatory intelligence", "Guideline interpretation", "Submission lifecycle", "Safety reporting requirements", "Labeling concepts", "Inspection readiness", "Regulatory writing", "Change impact assessment"], "resources": [["5", "ICH Efficacy Guidelines", "Official ICH E-series", "https://admin.ich.org/page/efficacy-guidelines"], ["5", "CDSCO Acts & Rules", "Indian regulatory source", "https://www.cdsco.gov.in/opencms/opencms/en/Acts-and-rules/New-Drugs/"], ["5", "FDA Guidance & Regulatory Information", "Official FDA guidance library", "https://www.fda.gov/drugs/guidance-compliance-regulatory-information"], ["5", "EMA Clinical Trials", "Official EU clinical-trial information", "https://www.ema.europa.eu/en/human-regulatory-overview/research-development/clinical-trials-human-medicines"], ["4", "FDA Drug Development Process", "Accessible development overview", "https://www.fda.gov/patients/learn-about-drug-and-device-approvals/drug-development-process"]], "projects": [["Easy", "Regulatory glossary", "Build a personal India/US/EU regulatory glossary."], ["Easy", "Drug development pathway map", "Compare India vs US vs EU development pathways."], ["Easy", "Guideline reading log", "Summarize 10 important ICH/FDA/EMA documents in one page each."], ["Easy", "Regulatory source tracker", "Build a spreadsheet of agencies, update pages and document versions."], ["Medium", "Guideline version comparison", "Compare two versions and create a what-changed memo."], ["Medium", "Submission dossier map", "Map CTD modules to evidence and document types."], ["Medium", "Regulatory impact assessment", "Choose a guideline change and map affected workflows."], ["Hard", "Mock agency response", "Draft responses to a hypothetical regulatory question."], ["Hard", "Global requirement matrix", "Compare India/US/EU requirements for a fictional study."], ["Expert", "Regulatory intelligence dashboard", "Track updates, classify impact and generate executive summaries."]]}, {"id": "stats", "name": "Biostatistics", "icon": "Σ", "priority": "CORE", "skills": ["Descriptive statistics", "Probability", "Distributions", "Sampling", "Confidence intervals", "Hypothesis testing", "p-values", "Effect sizes", "Power & sample size", "t-tests", "Chi-square", "ANOVA", "Correlation", "Linear regression", "Logistic regression", "Survival analysis", "Kaplan-Meier", "Cox regression", "Missing data", "Multiplicity"], "resources": [["5", "Khan Academy Statistics & Probability", "Free structured fundamentals", "https://www.khanacademy.org/math/statistics-probability"], ["5", "MIT OpenCourseWare", "University-level open courses", "https://ocw.mit.edu/search/?q=statistics"], ["4", "OpenIntro Statistics", "Free open textbook", "https://www.openintro.org/book/os/"], ["4", "Penn State Statistics", "Free online course notes", "https://online.stat.psu.edu/statprogram/"], ["4", "NIST Engineering Statistics Handbook", "Free reference", "https://www.itl.nist.gov/div898/handbook/"]], "projects": [["Easy", "Descriptive clinical report", "Summarize a synthetic patient dataset."], ["Easy", "Confidence interval visualizer", "Show how CI changes with sample size."], ["Easy", "p-value simulation", "Simulate null distributions and p-values."], ["Easy", "Effect size calculator", "Build Cohen's d / risk difference calculations."], ["Medium", "Sample size explorer", "Compare power across effect sizes and sample sizes."], ["Medium", "Clinical baseline table", "Generate a Table 1 from a synthetic dataset."], ["Medium", "Logistic regression model", "Predict an outcome from patient covariates."], ["Hard", "Kaplan-Meier analysis", "Analyze synthetic time-to-event data."], ["Hard", "Cox regression report", "Fit and interpret a Cox model."], ["Expert", "Full statistical analysis report", "Design analysis, code it, interpret it and write limitations."]]}, {"id": "r", "name": "R Programming", "icon": "R", "priority": "HIGH", "skills": ["R/RStudio basics", "Vectors, lists, data frames", "Functions", "Tidyverse", "dplyr", "tidyr", "ggplot2", "readr/readxl", "Factors & dates", "Joins", "Pipelines", "Statistical modeling", "R Markdown / Quarto", "Reproducible analysis", "Shiny basics"], "resources": [["5", "R for Data Science (2e)", "Free full book by Posit/R4DS authors", "https://r4ds.hadley.nz/"], ["5", "R Project Manuals", "Official R documentation", "https://cran.r-project.org/manuals.html"], ["4", "Posit Cheatsheets", "High-quality practical references", "https://posit.co/resources/cheatsheets/"], ["4", "swirl", "Interactive R learning in R", "https://swirlstats.com/"], ["4", "R for Data Science tutorials", "Free guided practice", "https://education.rstudio.com/learn/"]], "projects": [["Easy", "R data cleaning notebook", "Import, clean and summarize a clinical CSV."], ["Easy", "Drug utilization plots", "Visualize drug categories and frequencies."], ["Easy", "AE frequency dashboard", "Create bar charts and summaries for synthetic AEs."], ["Easy", "Patient demographics report", "Generate a reproducible report."], ["Medium", "Clinical Table 1 generator", "Automate baseline tables."], ["Medium", "Survival analysis in R", "Kaplan-Meier and Cox model."], ["Medium", "Forest plot generator", "Create subgroup effect plots."], ["Hard", "RWE cohort analysis", "Define cohort, clean data and estimate associations."], ["Hard", "Reproducible clinical analysis pipeline", "Data→analysis→figures→report with one command."], ["Expert", "Shiny clinical intelligence app", "Interactive trial/PV dashboard in R Shiny."]]}, {"id": "sas", "name": "SAS", "icon": "SAS", "priority": "HIGH", "skills": ["SAS Studio", "DATA step", "PROC SQL", "PROC SORT", "PROC FREQ", "PROC MEANS", "PROC UNIVARIATE", "PROC REPORT", "PROC SGPLOT", "Formats/informats", "Macros", "Libraries", "Merging datasets", "Clinical trial datasets", "ADaM concepts", "SDTM concepts", "TFL generation", "Statistical procedures"], "resources": [["5", "SAS OnDemand for Academics", "Free SAS Studio for independent learners", "https://www.sas.com/en_in/software/on-demand-for-academics.html"], ["5", "SAS Free Training", "Official free SAS courses incl. Programming 1 & Statistics 1", "https://www.sas.com/en_in/training/offers/free-training.html"], ["5", "SAS Support / ODA Training", "Free SAS Studio tutorials and courses", "https://support.sas.com/en/software/ondemand-for-academics-support.html"], ["5", "SAS Skill Builder for Students", "Free academic training/software", "https://www.sas.com/sas/training/academic/student-skill-builder-emea.html"], ["4", "Getting Started with SAS Programming", "Free SAS programming book excerpt / guide", "https://support.sas.com/content/dam/SAS/support/en/books/getting-started-with-sas-programming-using-sas-studio-in-the-cloud/75896_excerpt.pdf"]], "projects": [["Easy", "SAS data import/cleaning", "Import a CSV, inspect missingness and standardize variables."], ["Easy", "PROC FREQ/MEANS report", "Create a demographic and AE summary."], ["Easy", "PROC SQL practice", "JOIN synthetic patient, visit and AE tables."], ["Easy", "SAS visualization report", "Create clinical plots with SGPLOT."], ["Medium", "Clinical Table 1 in SAS", "Generate formatted baseline tables."], ["Medium", "AE summary by treatment", "Create counts, percentages and treatment comparisons."], ["Medium", "SAS macro utilities", "Build reusable macros for common tables."], ["Medium", "Survival analysis in SAS", "Use PROC LIFETEST and interpret output."], ["Hard", "SDTM-style dataset project", "Transform raw synthetic data into simplified SDTM-like domains."], ["Expert", "TFL pipeline", "Build reusable SAS code for Tables, Listings and Figures from raw data."]]}, {"id": "data", "name": "Excel + SQL", "icon": "▦", "priority": "HIGH", "skills": ["Excel formulas", "PivotTables", "Power Query", "Data validation", "Data cleaning", "Power Pivot", "Dashboard design", "SQL SELECT/WHERE", "GROUP BY/HAVING", "JOINs", "CASE", "CTEs", "Window functions", "Data modeling", "Query optimization basics"], "resources": [["5", "Microsoft Learn", "Free official Excel/Power Query/SQL learning", "https://learn.microsoft.com/training/"], ["5", "Kaggle Intro to SQL", "Free hands-on SQL", "https://www.kaggle.com/learn/intro-to-sql"], ["5", "Kaggle Advanced SQL", "Free advanced SQL practice", "https://www.kaggle.com/learn/advanced-sql"], ["4", "SQLBolt", "Interactive SQL lessons", "https://sqlbolt.com/"], ["4", "Mode SQL Tutorial", "Practical SQL tutorial", "https://mode.com/sql-tutorial/"]], "projects": [["Easy", "Clinical tracker in Excel", "Build a study tracker with formulas and conditional formatting."], ["Easy", "AE pivot dashboard", "Summarize synthetic safety data."], ["Easy", "Power Query cleaning", "Automate cleaning of messy CSV files."], ["Easy", "Recruitment dashboard", "Create site-level recruitment KPIs."], ["Medium", "SQL clinical database", "Design patient/site/visit tables and query them."], ["Medium", "Query challenge set", "Write 30 clinical-style SQL queries."], ["Medium", "Risk KPI dashboard", "Combine data sources with Power Query."], ["Hard", "Trial data warehouse", "Create normalized tables and analytical views."], ["Hard", "PV case SQL analytics", "Analyze case timelines and outcomes."], ["Expert", "Clinical operations command center", "Excel/SQL-backed dashboard for recruitment, quality and risk."]]}, {"id": "python", "name": "Python", "icon": "Py", "priority": "HIGH", "skills": ["Python syntax", "Functions/classes", "File handling", "Exceptions", "Pandas", "NumPy", "Matplotlib", "Seaborn/Plotly", "APIs", "Regex", "Data cleaning", "Statistics in Python", "Scikit-learn", "NLP basics", "Automation", "Jupyter", "Git/GitHub"], "resources": [["5", "Python Official Tutorial", "Official Python documentation", "https://docs.python.org/3/tutorial/"], ["5", "Kaggle Learn Python", "Free hands-on course", "https://www.kaggle.com/learn/python"], ["4", "Python Data Science Handbook", "Free online reference", "https://jakevdp.github.io/PythonDataScienceHandbook/"], ["4", "Automate the Boring Stuff", "Free online practical automation book", "https://automatetheboringstuff.com/"], ["4", "Scikit-learn User Guide", "Official ML documentation", "https://scikit-learn.org/stable/user_guide.html"]], "projects": [["Easy", "CSV profiler", "Automatically report columns, types, missingness and unique values."], ["Easy", "Medication cleaner", "Normalize messy medication strings in a synthetic dataset."], ["Easy", "Clinical calculator", "Build dosing/statistical utility functions."], ["Easy", "AE visualization notebook", "Explore synthetic adverse-event data."], ["Medium", "Literature screening tool", "Classify abstracts using rule-based NLP."], ["Medium", "Duplicate case detector", "Match similar synthetic PV cases."], ["Medium", "Automated report generator", "Create PDF/HTML summaries from a dataset."], ["Hard", "Signal detection notebook", "Calculate and visualize disproportionality metrics."], ["Hard", "Clinical prediction model", "Build and validate a baseline risk model."], ["Expert", "End-to-end clinical AI pipeline", "Data cleaning→NLP/model→evaluation→dashboard."]]}, {"id": "rwe", "name": "Epidemiology + RWE + Causal Inference", "icon": "∞", "priority": "HIGH", "skills": ["Incidence/prevalence", "Cohort/case-control", "Confounding", "Bias", "Effect modification", "RR/OR/HR", "Propensity scores", "Matching/weighting", "DAGs", "Target trial emulation", "Missing data", "Sensitivity analyses", "RWD sources", "RWE study design", "Regulatory RWE"], "resources": [["5", "FDA RWE Resources", "Official RWE workshops/webinars", "https://www.fda.gov/science-research/real-world-evidence/real-world-evidence-rwe-resources"], ["5", "FDA Real-World Evidence", "Official RWD/RWE framework and updates", "https://www.fda.gov/science-research/science-and-research-special-topics/real-world-evidence"], ["4", "Khan Academy Statistics", "Foundations for inference", "https://www.khanacademy.org/math/statistics-probability"], ["4", "NIST Statistics Handbook", "Statistical reference", "https://www.itl.nist.gov/div898/handbook/"], ["4", "PubMed", "Find epidemiology/RWE papers", "https://pubmed.ncbi.nlm.nih.gov/"]], "projects": [["Easy", "Incidence/prevalence calculator", "Build epidemiological measures from synthetic data."], ["Easy", "Cohort vs case-control comparison", "Design both for the same research question."], ["Easy", "Bias casebook", "Identify selection/information/confounding bias in 20 scenarios."], ["Medium", "DAG builder", "Draw causal diagrams for drug-outcome questions."], ["Medium", "Propensity score matching", "Match two treatment groups on synthetic data."], ["Medium", "Observational safety study", "Estimate association between exposure and outcome."], ["Hard", "Target trial emulation", "Translate a hypothetical RCT into an observational design."], ["Hard", "Inverse probability weighting", "Estimate adjusted treatment effects."], ["Hard", "Sensitivity analysis", "Test robustness to unmeasured confounding."], ["Expert", "Regulatory-grade RWE protocol", "Write question, design, estimand, analysis and limitations."]]}, {"id": "evidence", "name": "Evidence + Medical Writing", "icon": "✎", "priority": "HIGH", "skills": ["PubMed searching", "MeSH", "PICO", "Study design appraisal", "Risk of bias", "PRISMA", "Systematic review workflow", "Meta-analysis concepts", "Scientific writing", "Abstracts", "Posters", "Clinical summaries", "Safety narratives", "CSR writing", "Executive summaries", "Citation management"], "resources": [["5", "Cochrane Learn", "Free evidence/synthesis resources", "https://www.cochrane.org/learn"], ["5", "PubMed", "Free biomedical literature database", "https://pubmed.ncbi.nlm.nih.gov/"], ["5", "PubMed Central", "Free full-text biomedical archive", "https://www.ncbi.nlm.nih.gov/pmc/"], ["4", "Cochrane Courses & Resources", "Systematic review methods/resources", "https://www.cochrane.org/learn/courses-and-resources"], ["4", "NCBI Bookshelf", "Free biomedical books/manuals", "https://www.ncbi.nlm.nih.gov/books/"]], "projects": [["Easy", "PubMed search strategy", "Build a reproducible search for a drug/outcome question."], ["Easy", "Critical appraisal one-pager", "Appraise 10 clinical papers."], ["Easy", "Drug evidence brief", "Summarize efficacy/safety evidence for one drug."], ["Easy", "Safety narrative set", "Write 10 synthetic narratives."], ["Medium", "Mini systematic review", "Screen 30–50 papers and create a PRISMA-style flow."], ["Medium", "Evidence table", "Extract design, population, outcomes and limitations."], ["Medium", "Poster from a paper", "Turn one paper into a scientific poster."], ["Hard", "Rapid review", "Answer a focused clinical question using reproducible methods."], ["Hard", "Meta-analysis practice", "Use public studies/data and explain heterogeneity."], ["Expert", "Publication-quality systematic review protocol", "Register-style protocol with PICO, search and analysis plan."]]}, {"id": "ai", "name": "AI + Automation", "icon": "AI", "priority": "FUTURE MOAT", "skills": ["LLM fundamentals", "Prompt design", "Structured outputs", "Embeddings", "RAG", "Document extraction", "NLP", "Classification", "Evaluation", "Hallucination control", "Human-in-the-loop", "AI validation", "Privacy", "Governance", "Workflow automation", "Agents"], "resources": [["5", "Kaggle Learn", "Free AI/ML learning tracks", "https://www.kaggle.com/learn"], ["5", "Kaggle Intro to Machine Learning", "Free hands-on ML", "https://www.kaggle.com/learn/intro-to-machine-learning"], ["5", "Kaggle AI Ethics", "Free responsible-AI course", "https://www.kaggle.com/learn/intro-to-ai-ethics"], ["4", "SAS Free AI Training", "Free AI/ML/GenAI training", "https://www.sas.com/en_in/training/offers/free-training.html"], ["4", "Scikit-learn User Guide", "Free practical ML documentation", "https://scikit-learn.org/stable/user_guide.html"]], "projects": [["Easy", "Research paper summarizer", "Compare structured vs free-form AI summaries."], ["Easy", "Guideline Q&A prototype", "Build a small retrieval-based knowledge base."], ["Easy", "AE text extractor", "Extract drug, event, seriousness and dates from synthetic narratives."], ["Medium", "Protocol eligibility assistant", "Map patient facts to protocol criteria with human verification."], ["Medium", "Regulatory diff assistant", "Compare two public guideline versions."], ["Medium", "Literature triage classifier", "Prioritize abstracts for PV review."], ["Hard", "RAG clinical knowledge assistant", "Ground answers in a controlled public corpus and evaluate citations."], ["Hard", "PV narrative generator", "Generate draft narratives from structured synthetic cases with QC checks."], ["Hard", "Trial risk anomaly detector", "Flag unusual site-level operational patterns."], ["Expert", "Human-in-the-loop clinical AI platform", "Combine retrieval, extraction, evaluation, audit trail and reviewer approval."]]}, {"id": "quality", "name": "Quality + Project Management", "icon": "✓", "priority": "HIGH", "skills": ["Quality by design", "CTQ factors", "Risk management", "FMEA", "5 Whys", "Fishbone", "CAPA", "Deviation management", "Change control", "Audit readiness", "Inspection readiness", "RACI", "RAID", "Critical path", "Stakeholder management", "Escalation", "KPI design"], "resources": [["5", "ICH E6(R3)", "Quality-by-design and risk-based GCP", "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e6r3-good-clinical-practice-gcp"], ["5", "FDA Clinical Trials Training", "Clinical quality and regulatory training", "https://www.fda.gov/drugs/cder-small-business-industry-assistance-sbia/fda-clinical-trials-training-modules"], ["5", "EMA PV Training", "PV quality systems and inspection resources", "https://www.ema.europa.eu/en/pharmacovigilance-overview/pharmacovigilance-training-materials"], ["4", "ASQ Quality Resources", "Quality tools and concepts", "https://asq.org/quality-resources"], ["4", "Atlassian Project Management Guide", "Free practical project-management concepts", "https://www.atlassian.com/agile/project-management"]], "projects": [["Easy", "5 Whys casebook", "Solve 20 simulated clinical/research problems."], ["Easy", "RACI for a clinical trial", "Map sponsor/CRO/site/DM/PV/stat roles."], ["Easy", "Risk register", "Create a study-level risk and mitigation matrix."], ["Medium", "FMEA exercise", "Score failure modes for a clinical process."], ["Medium", "CAPA case simulation", "Investigate a deviation and write CAPA."], ["Medium", "Project dashboard", "Build timeline, owner, risk and status tracking."], ["Hard", "Inspection readiness drill", "Create a mock inspection checklist and evidence map."], ["Hard", "Root-cause analytics", "Analyze recurring deviations and prioritize interventions."], ["Hard", "Critical-path trial plan", "Build dependencies and simulate delays."], ["Expert", "Quality management system mini-design", "Design SOP, training, metrics, CAPA and audit loop for a fictional process."]]}, {"id": "business", "name": "Business + Leadership", "icon": "◆", "priority": "LEADERSHIP", "skills": ["CRO business model", "Sponsor expectations", "Client communication", "Utilization", "SLA/KPI thinking", "Cost/time/quality trade-offs", "Negotiation", "Executive communication", "Decision-making", "Delegation", "Coaching", "Conflict management", "Strategic thinking", "Business cases", "Career positioning"], "resources": [["5", "FDA / EMA industry resources", "Understand how regulated organizations make decisions", "https://www.fda.gov/"], ["4", "Harvard Business Review free articles", "Selected management/strategy reading", "https://hbr.org/"], ["4", "MIT OpenCourseWare", "Free management/strategy courses", "https://ocw.mit.edu/search/?q=management"], ["4", "Atlassian Team Playbook", "Free practical team/meeting tools", "https://www.atlassian.com/team-playbook"], ["3", "Y Combinator Startup Library", "Free business/product thinking", "https://www.ycombinator.com/library"]], "projects": [["Easy", "Map your CRO value chain", "Explain how a CRO creates value for a sponsor."], ["Easy", "KPI dictionary", "Define 30 clinical/project KPIs and why they matter."], ["Easy", "Executive one-pager", "Turn a complex issue into decision-ready communication."], ["Easy", "Meeting decision log", "Track decisions, owner, rationale and follow-up."], ["Medium", "Mock client escalation", "Write a response to a timeline/quality problem."], ["Medium", "Resource allocation exercise", "Balance people, timeline, quality and cost."], ["Medium", "Business case", "Propose an automation and estimate time saved."], ["Hard", "Operating review", "Build a monthly project review with metrics and risks."], ["Hard", "Process redesign", "Redesign a slow clinical workflow and quantify impact."], ["Expert", "Strategic proposal", "Develop a 12-month capability roadmap for a fictional CRO function."]]}];
-const KEY='careeros_authority_v3';
-let state=JSON.parse(localStorage.getItem(KEY)||'null')||{skills:{},done:{},projects:{}};ensureProjects();
-const allSkills=DOMAINS.flatMap(d=>d.skills.map(s=>({s,d:d.name})));
-allSkills.forEach(x=>{if(!(x.s in state.skills))state.skills[x.s]=0});
-function save(){localStorage.setItem(KEY,JSON.stringify(state));renderStats();renderSkills()}
-function esc(x){return String(x).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-function showPage(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('on'));document.getElementById(id).classList.add('on');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('on',b.dataset.page===id));window.scrollTo(0,0)}
-document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>showPage(b.dataset.page));
-function quality(q){return `<span class="q q${q}">Q${q}</span>`}
-function renderStats(){document.getElementById('domainCount').textContent=DOMAINS.length;document.getElementById('projectCount').textContent=DOMAINS.reduce((a,d)=>a+d.projects.length,0);document.getElementById('resourceCount').textContent=DOMAINS.reduce((a,d)=>a+d.resources.length,0);let avg=allSkills.reduce((a,x)=>a+state.skills[x.s],0)/allSkills.length;document.getElementById('skillPct').textContent=Math.round(avg*10)+'%';document.getElementById('skillBar').style.width=Math.round(avg*10)+'%'}
-function renderDomains(){document.getElementById('domainGrid').innerHTML=DOMAINS.map((d,i)=>`<div class="card domain" onclick="openDomain(${i})"><div class="icon">${d.icon}</div><h3>${esc(d.name)}</h3><span class="tag ${d.priority==='CORE'?'core':d.priority==='FUTURE MOAT'?'moat':'high'}">${d.priority}</span><p class="topics">${d.skills.slice(0,7).join(' · ')}…</p><div class="domainfoot"><span class="muted">${d.skills.length} skills · ${d.projects.length} projects</span><b>Open →</b></div></div>`).join('')}
-function openDomain(i){let d=DOMAINS[i];document.getElementById('domainDetailContent').innerHTML=`<div class="heroMini"><h2>${d.icon} ${esc(d.name)}</h2><p class="muted">${d.skills.length} skills · ${d.resources.length} top resources · ${d.projects.length} project ideas</p></div><div class="grid g2"><div class="card"><h3>What you need to learn</h3>${d.skills.map(s=>`<div class="skill"><div class="skilltop"><b>${esc(s)}</b><span>${state.skills[s]}/10</span></div><div class="bar"><i style="width:${state.skills[s]*10}%"></i></div></div>`).join('')}</div><div class="card"><h3>Ranked free resources</h3>${d.resources.map(r=>`<div class="resource">${quality(r[0])}<a href="${r[3]}" target="_blank"><b>${esc(r[1])}</b></a><div class="muted">${esc(r[2])}</div></div>`).join('')}</div></div><div class="card" style="margin-top:14px"><h3>Project ladder · easy → expert</h3>${d.projects.map((p,j)=>`<div class="project projectCard"><span class="difficulty">${esc(p[0])}</span><b>${j+1}. ${esc(p[1])}</b><small>${esc(p[2])}</small><div class="projectActions"><button class="btn primary" onclick="startProject('${encodeURIComponent(d.name+'::'+p[1])}')">▶ Start project</button><button class="btn" onclick="trackProject('${encodeURIComponent(d.name+'::'+p[1])}')">Track project</button></div></div>`).join('')}</div>`;showPage('domainDetail')}
-function renderResources(filter='All'){let arr=DOMAINS.flatMap(d=>d.resources.map(r=>({...r,domain:d.name}))).filter(r=>filter==='All'||r.domain===filter).sort((a,b)=>b[0]-a[0]);document.getElementById('resourceList').innerHTML=arr.map(r=>`<div class="resource">${quality(r[0])}<span class="tag">${esc(r.domain)}</span><a href="${r[3]}" target="_blank"><b>${esc(r[1])}</b></a><div class="muted">${esc(r[2])}</div></div>`).join('')}
-function renderResourceFilters(){let f=['All',...DOMAINS.map(d=>d.name)];document.getElementById('resourceFilters').innerHTML=f.map(x=>`<button class="btn ${x==='All'?'active':''}" onclick="renderResources('${x.replace(/'/g,"\\'")}');document.querySelectorAll('#resourceFilters button').forEach(b=>b.classList.toggle('active',b.textContent===this.textContent))">${esc(x)}</button>`).join('')}
-function projectKey(domain,title){return domain+'::'+title}
-function projectPlan(p,d){
-  const t=p[1], base=p[2];
-  const domain=d.toLowerCase();
-  let desc=base;
-  let steps=[
-    "Define the question, scope, success criteria and what data/evidence you are allowed to use.",
-    "Find 1–3 high-quality public sources or create a clean synthetic dataset; document assumptions.",
-    "Build the first working version using the appropriate tool (Excel/R/SAS/Python/SQL/document workflow).",
-    "Validate the output manually: check logic, edge cases, bias/limitations and reproducibility.",
-    "Package the result as a short report + screenshots/code + a 5-bullet lessons-learned note."
-  ];
-  if(domain.includes("clinical")) steps=[
-    "Choose a public clinical-trial protocol/study and define the exact operational question.",
-    "Extract the relevant study variables, visits, endpoints, risks or workflow steps into a structured table.",
-    "Build the proposed workflow, tracker, model or dashboard using synthetic/public data.",
-    "Quality-check against the protocol/GCP principles and record deviations, assumptions and limitations.",
-    "Write a one-page executive summary and save the final artifact to your portfolio."
-  ];
-  if(domain.includes("pharmacovigilance")) steps=[
-    "Define the safety question and create a small public/synthetic case dataset.",
-    "Apply the relevant PV definitions, coding rules or signal methodology consistently.",
-    "Perform the analysis/workflow and document every decision and assumption.",
-    "Run QC: duplicate checks, denominator checks, clinical plausibility and alternative explanations.",
-    "Produce a safety-focused report with findings, limitations and recommended next action."
-  ];
-  if(domain.includes("regulatory")) steps=[
-    "Select one current official guideline/rule and define the regulatory question.",
-    "Collect the primary-source documents and record version/date/jurisdiction.",
-    "Map the requirement to a fictional study, product or process.",
-    "Identify compliance gaps, operational impact and risk; distinguish facts from interpretation.",
-    "Write a one-page regulatory intelligence memo with sources and recommended action."
-  ];
-  if(domain.includes("biostatistics")||domain.includes("epidemiology")) steps=[
-    "Define the clinical/research question, population, exposure, outcome and estimand.",
-    "Create or obtain a suitable public/synthetic dataset and perform data QC.",
-    "Choose the analysis method and state assumptions before looking at the result.",
-    "Run the analysis, check assumptions/sensitivity and interpret effect size + uncertainty.",
-    "Write a concise statistical report explaining what the result means clinically and what it does not prove."
-  ];
-  if(d==="R Programming") steps=[
-    "Set up R/RStudio and create a reproducible project folder.",
-    "Import a public/synthetic dataset and clean it with tidyverse tools.",
-    "Build the requested analysis/visualization and save reusable functions where useful.",
-    "Validate outputs against manual calculations or a second method.",
-    "Publish a clean R script + Quarto/R Markdown report + README."
-  ];
-  if(d==="SAS") steps=[
-    "Set up SAS Studio/OnDemand and define the input/output datasets.",
-    "Import and inspect the raw data; document variables, formats and missingness.",
-    "Implement the analysis using DATA/PROC steps and PROC SQL where appropriate.",
-    "QC key outputs against an independent calculation or expected result.",
-    "Create clean Tables/Listings/Figures or a report and document reusable code."
-  ];
-  if(d==="Excel + SQL") steps=[
-    "Define the business/clinical question and the tables or workbook inputs required.",
-    "Clean and model the data; document keys, joins and data-quality rules.",
-    "Build the formulas, Power Query transformations or SQL queries.",
-    "Validate totals, duplicates, missingness and edge cases against source data.",
-    "Turn the result into a usable dashboard/report and document the logic."
-  ];
-  if(d==="Python") steps=[
-    "Define the problem and create a reproducible Python/Jupyter project.",
-    "Load and profile public/synthetic data; clean types, missingness and duplicates.",
-    "Implement the analysis, automation or model using pandas/NumPy and relevant libraries.",
-    "Test edge cases and validate outputs; record model/analysis limitations.",
-    "Package code, requirements, README, sample output and a short technical report."
-  ];
-  if(d.includes("Evidence + Medical Writing")) steps=[
-    "Frame the question using PICO/PECO and define inclusion/exclusion criteria.",
-    "Build a reproducible PubMed/search strategy and collect the relevant evidence.",
-    "Extract findings into a structured evidence table and critically appraise quality/bias.",
-    "Synthesize the evidence without overstating certainty; clearly separate evidence from inference.",
-    "Produce the final abstract/brief/report/poster with citations and a limitations section."
-  ];
-  if(d.includes("AI + Automation")) steps=[
-    "Define the workflow problem, user, input, output and human-review point.",
-    "Select the simplest suitable AI/automation approach and create a small evaluation set.",
-    "Build a prototype using public/synthetic documents or data only.",
-    "Evaluate accuracy, hallucinations, failure cases, privacy and reproducibility; add guardrails.",
-    "Package the prototype with an evaluation report, limitations and human-in-the-loop SOP."
-  ];
-  if(d.includes("Quality + Project")) steps=[
-    "Define the process, quality objective and failure scenario.",
-    "Map the current workflow and identify risks, CTQs, owners and dependencies.",
-    "Apply an appropriate tool such as FMEA, 5 Whys, CAPA, RACI or RAID.",
-    "Design controls/mitigations and define measurable KPIs to verify improvement.",
-    "Present the before/after process and an implementation plan to a mock stakeholder."
-  ];
-  if(d.includes("Business + Leadership")) steps=[
-    "Define the stakeholder, business problem and decision that needs to be made.",
-    "Gather evidence: timeline, cost, quality, resource or client-impact assumptions.",
-    "Compare at least three options and make trade-offs explicit.",
-    "Recommend one option with risks, mitigations, owner and success metrics.",
-    "Present it as a one-page executive brief and a 5-minute verbal pitch."
-  ];
-  return {desc,steps};
-}
-function renderProjects(filter='All'){
-  let arr=DOMAINS.flatMap(d=>d.projects.map((p,i)=>({p,d:d.name,idx:i}))).filter(x=>filter==='All'||x.d===filter);
-  document.getElementById('projectList').innerHTML=arr.map(x=>{
-    const k=projectKey(x.d,x.p[1]), st=state.projects?.[k]||{started:false,status:"Not started",progress:0};
-    const safeK=encodeURIComponent(k);
-    return `<div class="project projectCard">
-      <span class="difficulty">${esc(x.p[0])}</span><span class="tag">${esc(x.d)}</span>
-      <b>${x.idx+1}. ${esc(x.p[1])}</b>
-      <small>${esc(x.p[2])}</small>
-      <div class="projectActions">
-        <button class="btn primary" onclick="startProject(decodeURIComponent('${safeK}'))">${st.started?'Open tracker':'▶ Start project'}</button>
-        <button class="btn" onclick="trackProject(decodeURIComponent('${safeK}'))">Track project · ${st.progress}%</button>
-      </div>
-      ${st.started?`<div class="miniTrack"><div class="muted">${esc(st.status)} · ${st.progress}%</div><div class="bar"><i style="width:${st.progress}%"></i></div></div>`:''}
-    </div>`;
-  }).join('')
-}
-function ensureProjects(){if(!state.projects)state.projects={}}
-function startProject(k){
-  ensureProjects();
-  if(!state.projects[k]) state.projects[k]={started:true,status:"In progress",progress:0,notes:""};
-  else {state.projects[k].started=true;if(state.projects[k].status==="Not started")state.projects[k].status="In progress"}
-  save(); openProjectTracker(k);
-}
-function trackProject(k){ensureProjects();if(!state.projects[k])state.projects[k]={started:false,status:"Not started",progress:0,notes:""};save();openProjectTracker(k)}
-function openProjectTracker(k){
-  const [dName,title]=k.split("::");
-  const d=DOMAINS.find(x=>x.name===dName), p=d?.projects.find(x=>x[1]===title);
-  if(!d||!p)return;
-  const meta=projectPlan(p,dName), st=state.projects[k];
-  const idx=d.projects.indexOf(p)+1;
-  document.getElementById('domainDetailContent').innerHTML=`
-   <div class="heroMini"><button class="btn" onclick="showPage('projects')">← Project Lab</button><div style="margin-top:12px"><span class="tag">${esc(dName)}</span><span class="tag">${esc(p[0])}</span><h2>${idx}. ${esc(title)}</h2><p class="muted">${esc(meta.desc)}</p></div></div>
-   <div class="grid g2">
-    <div class="card"><h3>Project brief</h3><p class="muted">${esc(meta.desc)}</p><h3 style="margin-top:20px">Steps</h3>
-    ${meta.steps.map((s,i)=>`<div class="checkrow"><input type="checkbox" ${st.stepDone?.[i]?'checked':''} onchange="setProjectStep('${encodeURIComponent(k)}',${i},this.checked)"><span><b>Step ${i+1}</b> · ${esc(s)}</span></div>`).join('')}</div>
-    <div class="card"><h3>Track project</h3><label class="muted">Status</label><select class="input" style="margin:5px 0 12px" onchange="setProjectStatus('${encodeURIComponent(k)}',this.value)">
-      ${["Not started","In progress","Blocked","Review","Completed"].map(s=>`<option ${st.status===s?'selected':''}>${s}</option>`).join('')}</select>
-      <label class="muted">Progress</label><input type="range" min="0" max="100" value="${st.progress}" style="width:100%;accent-color:#a895ff" oninput="this.nextElementSibling.textContent=this.value+'%';setProjectProgress('${encodeURIComponent(k)}',this.value)"><div style="margin:4px 0 15px">${st.progress}%</div>
-      <label class="muted">Project notes / lessons</label><textarea class="note" id="projectNotes" placeholder="What did you build? What failed? What did you learn?">${esc(st.notes||"")}</textarea><button class="btn primary" style="margin-top:9px" onclick="saveProjectNotes('${encodeURIComponent(k)}')">Save notes</button>
-      <div class="resource" style="margin-top:15px"><b>Portfolio finish line</b><span class="muted">Save code/data dictionary or workbook + README + 1-page report + screenshot/demo + limitations.</span></div>
-    </div>
-   </div>`;
-  showPage('domainDetail');
-}
-function setProjectStep(k,i,v){k=decodeURIComponent(k);ensureProjects();let s=state.projects[k];if(!s.stepDone)s.stepDone={};s.stepDone[i]=v;let n=Object.values(s.stepDone).filter(Boolean).length;s.progress=Math.round(n/5*100);if(n===5)s.status="Completed";else if(n>0)s.status="In progress";save();openProjectTracker(k)}
-function setProjectStatus(k,v){k=decodeURIComponent(k);ensureProjects();state.projects[k].status=v;save();openProjectTracker(k)}
-function setProjectProgress(k,v){k=decodeURIComponent(k);ensureProjects();state.projects[k].progress=Number(v);localStorage.setItem(KEY,JSON.stringify(state));}
-function saveProjectNotes(k){k=decodeURIComponent(k);ensureProjects();state.projects[k].notes=document.getElementById('projectNotes').value;save();openProjectTracker(k)}
+const domains=[
+["01","Clinical Research","Trials, protocol, GCP, RBQM, sites and operational execution."],
+["02","Pharmacovigilance","ICSRs, MedDRA, narratives, signals, aggregate safety and QMS."],
+["03","Regulatory","CDSCO, ICH, FDA, EMA, submissions and regulatory intelligence."],
+["04","Biostatistics","Inference, effect sizes, regression, survival, power and missing data."],
+["05","R Programming","Tidy data, visualization, modeling and reproducible analysis."],
+["06","SAS","Clinical programming, SQL, TFLs and SDTM/ADaM concepts."],
+["07","Excel + SQL","Operational analytics, data cleaning, dashboards and querying."],
+["08","Python","Automation, data engineering, NLP, modeling and AI workflows."],
+["09","Epidemiology + RWE","Observational design, bias, causal inference and real-world evidence."],
+["10","Evidence + Writing","Literature, appraisal, synthesis, medical writing and communication."],
+["11","AI + Automation","LLMs, extraction, RAG, evaluation, governance and workflow design."],
+["12","Quality + PM","Risk, CAPA, FMEA, critical path, delivery and inspection readiness."],
+["13","Business + Leadership","CRO economics, clients, decisions, influence and strategic thinking."]
+];
+const projectTemplates=[
+"Deconstruct a real-world workflow and map inputs, decisions, risks and outputs.",
+"Build a small analysis or dashboard that answers a concrete operational question.",
+"Create a reusable framework, checklist or decision tool and test it on sample cases.",
+"Produce a portfolio-quality report with methods, validation, findings and limitations.",
+"Design an end-to-end intelligence workflow with controls, metrics and an executive summary."
+];
+let state=JSON.parse(localStorage.getItem("careeros_v10")||"{}");
+state.projects=state.projects||{}; state.skills=state.skills||{};
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 
-function renderProjectFilters(){let f=['All',...DOMAINS.map(d=>d.name)];document.getElementById('projectFilters').innerHTML=f.map(x=>`<button class="btn ${x==='All'?'active':''}" onclick="renderProjects('${x.replace(/'/g,"\\'")}');document.querySelectorAll('#projectFilters button').forEach(b=>b.classList.toggle('active',b.textContent===this.textContent))">${esc(x)}</button>`).join('')}
-function renderSkills(){let groups={};allSkills.forEach(x=>(groups[x.d]??=[]).push(x.s));document.getElementById('skillMatrix').innerHTML=Object.entries(groups).map(([d,ss])=>`<h3>${esc(d)}</h3>${ss.map(s=>`<div class="skill"><div class="skilltop"><b>${esc(s)}</b><span><button class="btn" style="padding:2px 7px" onclick="changeSkill('${s.replace(/'/g,"\\'")}',-1)">−</button> ${state.skills[s]}/10 <button class="btn" style="padding:2px 7px" onclick="changeSkill('${s.replace(/'/g,"\\'")}',1)">+</button></span></div><div class="bar"><i style="width:${state.skills[s]*10}%"></i></div></div>`).join('')}`).join('')}
-function changeSkill(s,n){state.skills[s]=Math.max(0,Math.min(10,state.skills[s]+n));save()}
-const plans={
-p1:["GCP + ICH E6(R3)","Clinical trial lifecycle","PV fundamentals + ICSR","Regulatory ecosystem: India/US/EU","Statistics foundations","Excel + data cleaning","Start R and SAS"],
-p2:["Protocol design + endpoints","MedDRA / signal concepts","R: tidyverse + ggplot2","SAS: DATA/PROC/SQL","SQL joins + windows","Critical appraisal + PubMed","First clinical/PV project"],
-p3:["Python + pandas","RWE + epidemiology","Survival + regression","SDTM/ADaM concepts","AI/NLP basics","Clinical data dashboard","Second/third portfolio project"],
-p4:["Deep specialization","Causal inference","Advanced SAS/R/Python","AI validation/governance","Quality + CAPA","Project management","Publication + conference + leadership"]
+function key(d,i){return d[0]+"-"+i}
+function projectFor(d,i){return {id:key(d,i),domain:d[1],title:projectTemplates[i%5]+" — "+d[1],desc:d[2],steps:["Define objective and success criteria","Gather sources/data and prepare inputs","Build the analysis/workflow","Validate assumptions and quality","Package findings into a portfolio artifact"]}}
+const projects=domains.flatMap(d=>[0,1,2,3,4].map(i=>projectFor(d,i)));
+function renderDomainCard(d){
+ const pct=state.skills[d[0]]||0;
+ return `<div class="card domain-card" data-search="${(d[1]+" "+d[2]).toLowerCase()}"><div class="domain-top"><span class="domain-no">${d[0]}</span><span class="tag">${pct}%</span></div><h3>${d[1]}</h3><p>${d[2]}</p><div class="meter"><i style="width:${pct}%"></i></div><div class="domain-foot"><span>Capability</span><b>${pct}%</b></div></div>`;
+}
+function render(){
+ $("#domainGrid").innerHTML=domains.map(renderDomainCard).join("");
+ $("#dashboardDomains").innerHTML=domains.slice(0,6).map(renderDomainCard).join("");
+ $("#projectList").innerHTML=projects.map(p=>{
+   const s=state.projects[p.id]||{status:"Not started",done:0,notes:""};
+   return `<div class="row project-row" data-search="${(p.title+" "+p.domain).toLowerCase()}"><div class="row-main"><div class="row-title">${p.title}</div><div class="row-sub">${p.domain} · ${s.done}/5 steps · ${s.status}</div></div><div class="project-actions"><button class="mini" data-project="${p.id}" data-action="start">Start</button><button class="mini primary" data-project="${p.id}" data-action="track">Track</button></div></div>`;
+ }).join("");
+ $("#skillList").innerHTML=domains.map(d=>`<div class="row"><div class="row-main"><div class="row-title">${d[1]}</div><div class="row-sub">${d[2]}</div></div><input type="range" min="0" max="100" value="${state.skills[d[0]]||0}" data-skill="${d[0]}" style="width:min(280px,45vw);accent-color:var(--accent)"></div>`).join("");
+ updateStats();
+}
+function updateStats(){
+ const vals=domains.map(d=>state.skills[d[0]]||0), overall=Math.round(vals.reduce((a,b)=>a+b,0)/vals.length);
+ const active=projects.filter(p=>state.projects[p.id]?.status==="In progress").length;
+ const done=projects.filter(p=>state.projects[p.id]?.status==="Completed").length;
+ $("#overallPct").textContent=overall+"%";$("#activeCount").textContent=active;$("#doneCount").textContent=done;
+}
+function go(id){
+ $$(".view").forEach(x=>x.classList.toggle("hidden",x.id!==id));
+ $$("[data-target]").forEach(x=>x.classList.toggle("active",x.dataset.target===id));
+ $("#sidebar").classList.remove("open");window.scrollTo({top:0,behavior:"smooth"});
+}
+$$("[data-target]").forEach(x=>x.addEventListener("click",()=>go(x.dataset.target)));
+
+function openProject(id){
+ const p=projects.find(x=>x.id===id); if(!p)return;
+ const s=state.projects[id]||{status:"Not started",done:0,notes:""};
+ $("#modalDomain").textContent=p.domain;$("#modalTitle").textContent=p.title;$("#modalDesc").textContent=p.desc;
+ $("#steps").innerHTML=p.steps.map((x,i)=>`<label class="step"><input type="checkbox" data-step="${i}" ${i<s.done?"checked":""}><span>${x}</span></label>`).join("");
+ $("#notes").value=s.notes||"";$("#modalStatus").textContent=s.status;
+ $("#overlay").classList.add("open");$("#overlay").dataset.id=id;
+}
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-project]"); if(!b)return;
+ const id=b.dataset.project;
+ if(b.dataset.action==="start"){
+   state.projects[id]=state.projects[id]||{status:"In progress",done:0,notes:""};
+   if(state.projects[id].status==="Not started")state.projects[id].status="In progress";
+   localStorage.setItem("careeros_v10",JSON.stringify(state));render();openProject(id);
+ } else openProject(id);
+});
+$("#closeModal").onclick=()=>$("#overlay").classList.remove("open");
+$("#overlay").addEventListener("click",e=>{if(e.target.id==="overlay")$("#overlay").classList.remove("open")});
+$("#saveProject").onclick=()=>{
+ const id=$("#overlay").dataset.id,s=state.projects[id]||{status:"In progress",done:0,notes:""};
+ const done=$$("#steps input").filter(x=>x.checked).length;s.done=done;s.notes=$("#notes").value;
+ s.status=done===5?"Completed":done>0?"In progress":"In progress";
+ state.projects[id]=s;localStorage.setItem("careeros_v10",JSON.stringify(state));$("#overlay").classList.remove("open");render();
 };
-Object.entries(plans).forEach(([id,items])=>document.getElementById(id).innerHTML=items.map((x,i)=>`<div class="checkrow"><input type="checkbox" ${state.done[x]?'checked':''} onchange="state.done['${x.replace(/'/g,"\\'")}']=this.checked;save()"><span>${esc(x)}</span></div>`).join(''));
-document.getElementById('globalSearch').oninput=e=>{let q=e.target.value.toLowerCase();if(!q)return;let d=DOMAINS.find(x=>(x.name+' '+x.skills.join(' ')+' '+x.projects.flat().join(' ')).toLowerCase().includes(q));if(d){openDomain(DOMAINS.indexOf(d))}};
-renderDomains();renderResourceFilters();renderResources();renderProjectFilters();renderProjects();renderSkills();renderStats();
+document.addEventListener("input",e=>{
+ if(e.target.dataset.skill){state.skills[e.target.dataset.skill]=+e.target.value;localStorage.setItem("careeros_v10",JSON.stringify(state));updateStats();render();}
+});
+$("#domainSearch").addEventListener("input",e=>{const q=e.target.value.toLowerCase();$$("#domainGrid .domain-card").forEach(x=>x.classList.toggle("hidden",!x.dataset.search.includes(q)))});
+$("#projectSearch").addEventListener("input",e=>{const q=e.target.value.toLowerCase();$$(".project-row").forEach(x=>x.classList.toggle("hidden",!x.dataset.search.includes(q)))});
+$("#menuBtn").onclick=()=>$("#sidebar").classList.toggle("open");
+render();
 </script>
-
-<script id="career-os-v6-mobile">
-(function(){
-  "use strict";
-  document.documentElement.dataset.careerOsVersion = "6";
-
-  function firstVisibleNav(){
-    return document.querySelector("nav, .sidebar, aside, .side-nav");
-  }
-
-  function setupMobile(){
-    var side = firstVisibleNav();
-    if(!side || document.querySelector(".mobile-menu-btn")) return;
-
-    var btn = document.createElement("button");
-    btn.className = "mobile-menu-btn";
-    btn.type = "button";
-    btn.setAttribute("aria-label","Open navigation");
-    btn.innerHTML = "☰";
-    btn.style.cssText = "position:fixed;top:12px;left:12px;z-index:1100;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(15,16,22,.88);color:inherit;padding:9px 12px;font-size:20px;backdrop-filter:blur(12px);";
-    document.body.appendChild(btn);
-
-    function close(){ document.body.classList.remove("menu-open"); side.classList.remove("open"); }
-    btn.addEventListener("click", function(){
-      document.body.classList.toggle("menu-open");
-      side.classList.toggle("open");
-    });
-    document.addEventListener("click", function(e){
-      if(!document.body.classList.contains("menu-open")) return;
-      if(e.target === btn || side.contains(e.target)) return;
-      close();
-    });
-    side.addEventListener("click", function(e){
-      if(e.target.closest("a,button,[role='button']")) setTimeout(close,80);
-    });
-  }
-
-  function addOverflowGuards(){
-    document.querySelectorAll("table").forEach(function(t){
-      if(t.parentElement && !t.parentElement.classList.contains("table-wrap")){
-        var p=t.parentElement;
-        if(getComputedStyle(p).overflowX !== "auto"){
-          p.style.overflowX="auto";
-          p.style.webkitOverflowScrolling="touch";
-        }
-      }
-    });
-  }
-
-  function init(){
-    setupMobile();
-    addOverflowGuards();
-    window.addEventListener("resize", addOverflowGuards, {passive:true});
-  }
-  if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
-  else init();
-})();
-</script>
-
 </body>
 </html>
